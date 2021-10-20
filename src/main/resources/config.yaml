@@ -1,0 +1,7 @@
+fileParsingTopic:
+  topicName: test
+  deadLetterTopic: dlq-test
+  consumerCount: 5
+  partitionCount: 5
+  brokerList:
+  zookeeperList:

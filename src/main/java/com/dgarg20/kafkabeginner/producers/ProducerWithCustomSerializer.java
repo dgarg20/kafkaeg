@@ -1,4 +1,4 @@
-package com.dgarg20.kafkabeginner;
+package com.dgarg20.kafkabeginner.producers;
 
 import com.sun.xml.internal.ws.encoding.soap.DeserializationException;
 import org.apache.kafka.clients.producer.KafkaProducer;

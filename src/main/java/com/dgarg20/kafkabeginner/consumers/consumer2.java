@@ -1,4 +1,4 @@
-package com.dgarg20.kafkabeginner;
+package com.dgarg20.kafkabeginner.consumers;
 
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.errors.WakeupException;

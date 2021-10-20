@@ -1,4 +1,4 @@
-package com.dgarg20.kafkabeginner.offset_commit_toMysql;
+package com.dgarg20.kafkabeginner.consumers.offset_commit_toMysql;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;

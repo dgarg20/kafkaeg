@@ -1,4 +1,4 @@
-package com.dgarg20.kafkabeginner;
+package com.dgarg20.kafkabeginner.producers;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Partitioner;

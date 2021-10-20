@@ -1,4 +1,4 @@
-package com.dgarg20.kafkabeginner;
+package com.dgarg20.kafkabeginner.consumers;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -25,32 +25,32 @@ import java.util.Properties;
 public class consumer4 {
         public static void main(String [] args) {
             Properties props = new Properties();
-            props.put("bootstrap.servers", "localhost:9092");
-            props.put("group.id", "group22");
+            props.put("bootstrap.servers", "10.50.82.112:6667");
+            props.put("group.id", "triggerCommodityResolutionGroup");
             props.put("enable.auto.commit", "false");
             //props.put("auto.commit.interval.ms", "1000");
             //props.put("session.timeout.ms", "60000");
             props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
             props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
             KafkaConsumer consumer = new KafkaConsumer(props);
-            consumer.subscribe(Arrays.asList("test2"));
+            consumer.subscribe(Arrays.asList("triggerCommodityresolutionTopicV2"));
             try {
                 while (true) {
                     ConsumerRecords<String, String> records = consumer.poll(100);
                     for (TopicPartition partition : records.partitions()) {
                         List<ConsumerRecord<String, String>> partitionsRecords = records.records(partition);
                         for (ConsumerRecord<String, String> record : partitionsRecords) {
-                            System.out.println(record.offset() + ": " + record.key() + "-> "
-                                    + record.value());
+                            if(record.offset() == 146 && record.partition() == 19) {
+                                System.out.println("partiton = " +record.partition() + "offset = " + record.offset() + ": " + record.key() + "-> "
+                                        + record.value());
 
-                            //    long lastoffset = partitionsRecords.get(partitionsRecords.size() - 1).offset();
-                            //              consumer.commitSync(Collections.singletonMap(partition, new OffsetAndMetadata(lastoffset + 1)));}
+                                long lastoffset = partitionsRecords.get(partitionsRecords.size() - 1).offset();
+                                consumer.commitSync(Collections.singletonMap(partition, new OffsetAndMetadata(lastoffset + 1)));
+                            }
+                            }
                         }
-
-
                     }
                 }
-            }
             catch (WakeupException e){
                 //ignoring the case
             }
